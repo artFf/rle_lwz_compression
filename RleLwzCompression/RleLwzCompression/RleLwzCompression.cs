@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace RleLwzCompression
 {
-    public partial class Form1 : Form
+    public partial class RleLwzCompression : Form
     {
-        public Form1()
+        public RleLwzCompression()
         {
             InitializeComponent();
         }
