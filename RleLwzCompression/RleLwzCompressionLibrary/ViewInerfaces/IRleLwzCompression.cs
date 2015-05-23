@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RleLwzCompressionLibrary.Models;
 
 namespace RleLwzCompressionLibrary.ViewInerfaces
