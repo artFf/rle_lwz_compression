@@ -17,5 +17,6 @@ namespace RleLwzCompressionLibrary.ViewInerfaces
         void ShowPicture(Picture picture);
         void CloseForm();
         void ClearSources();
+        void LoadPicture();
     }
 }
