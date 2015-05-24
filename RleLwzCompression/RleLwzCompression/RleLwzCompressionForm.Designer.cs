@@ -1,6 +1,6 @@
 ﻿namespace RleLwzCompression
 {
-    partial class RleLwzCompression
+    partial class RleLwzCompressionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -47,18 +47,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.buttonDecode = new System.Windows.Forms.Button();
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
+            this.labelLwzEncodeCompression = new System.Windows.Forms.Label();
+            this.labelRleEncodeCompression = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.labelLwzEncodeCompression = new System.Windows.Forms.Label();
-            this.labelRleEncodeCompression = new System.Windows.Forms.Label();
             this.groupBoxProgresses = new System.Windows.Forms.GroupBox();
+            this.progressBarLwzEncode = new System.Windows.Forms.ProgressBar();
+            this.progressBarRleEncode = new System.Windows.Forms.ProgressBar();
+            this.progressBarLoadPicture = new System.Windows.Forms.ProgressBar();
             this.labelEncodeLwzProgress = new System.Windows.Forms.Label();
             this.labelEncodeRleProgress = new System.Windows.Forms.Label();
             this.labelLoadePictureProgress = new System.Windows.Forms.Label();
-            this.progressBarLoadPicture = new System.Windows.Forms.ProgressBar();
-            this.progressBarRleEncode = new System.Windows.Forms.ProgressBar();
-            this.progressBarLwzEncode = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoadedPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRleDecodePicture)).BeginInit();
@@ -91,19 +91,19 @@
             // loadPictureToolStripMenuItem
             // 
             this.loadPictureToolStripMenuItem.Name = "loadPictureToolStripMenuItem";
-            this.loadPictureToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadPictureToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.loadPictureToolStripMenuItem.Text = "Load Picture";
             // 
             // logViewToolStripMenuItem
             // 
             this.logViewToolStripMenuItem.Name = "logViewToolStripMenuItem";
-            this.logViewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.logViewToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.logViewToolStripMenuItem.Text = "Log View";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // aboutToolStripMenuItem
@@ -119,6 +119,7 @@
             this.pictureBoxLoadedPicture.Location = new System.Drawing.Point(12, 70);
             this.pictureBoxLoadedPicture.Name = "pictureBoxLoadedPicture";
             this.pictureBoxLoadedPicture.Size = new System.Drawing.Size(299, 234);
+            this.pictureBoxLoadedPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLoadedPicture.TabIndex = 1;
             this.pictureBoxLoadedPicture.TabStop = false;
             // 
@@ -129,6 +130,7 @@
             this.pictureBoxRleDecodePicture.Location = new System.Drawing.Point(337, 70);
             this.pictureBoxRleDecodePicture.Name = "pictureBoxRleDecodePicture";
             this.pictureBoxRleDecodePicture.Size = new System.Drawing.Size(299, 234);
+            this.pictureBoxRleDecodePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxRleDecodePicture.TabIndex = 2;
             this.pictureBoxRleDecodePicture.TabStop = false;
             // 
@@ -139,6 +141,7 @@
             this.pictureBoxLwzDecodePicture.Location = new System.Drawing.Point(667, 70);
             this.pictureBoxLwzDecodePicture.Name = "pictureBoxLwzDecodePicture";
             this.pictureBoxLwzDecodePicture.Size = new System.Drawing.Size(299, 234);
+            this.pictureBoxLwzDecodePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLwzDecodePicture.TabIndex = 3;
             this.pictureBoxLwzDecodePicture.TabStop = false;
             // 
@@ -244,6 +247,24 @@
             this.groupBoxInfo.TabStop = false;
             this.groupBoxInfo.Text = "Info";
             // 
+            // labelLwzEncodeCompression
+            // 
+            this.labelLwzEncodeCompression.AutoSize = true;
+            this.labelLwzEncodeCompression.Location = new System.Drawing.Point(6, 125);
+            this.labelLwzEncodeCompression.Name = "labelLwzEncodeCompression";
+            this.labelLwzEncodeCompression.Size = new System.Drawing.Size(210, 16);
+            this.labelLwzEncodeCompression.TabIndex = 7;
+            this.labelLwzEncodeCompression.Text = "LZW Encode % compression:";
+            // 
+            // labelRleEncodeCompression
+            // 
+            this.labelRleEncodeCompression.AutoSize = true;
+            this.labelRleEncodeCompression.Location = new System.Drawing.Point(6, 99);
+            this.labelRleEncodeCompression.Name = "labelRleEncodeCompression";
+            this.labelRleEncodeCompression.Size = new System.Drawing.Size(208, 16);
+            this.labelRleEncodeCompression.TabIndex = 6;
+            this.labelRleEncodeCompression.Text = "RLE Encode % compression:";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -271,24 +292,6 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "RLE Encode size:";
             // 
-            // labelLwzEncodeCompression
-            // 
-            this.labelLwzEncodeCompression.AutoSize = true;
-            this.labelLwzEncodeCompression.Location = new System.Drawing.Point(6, 125);
-            this.labelLwzEncodeCompression.Name = "labelLwzEncodeCompression";
-            this.labelLwzEncodeCompression.Size = new System.Drawing.Size(210, 16);
-            this.labelLwzEncodeCompression.TabIndex = 7;
-            this.labelLwzEncodeCompression.Text = "LZW Encode % compression:";
-            // 
-            // labelRleEncodeCompression
-            // 
-            this.labelRleEncodeCompression.AutoSize = true;
-            this.labelRleEncodeCompression.Location = new System.Drawing.Point(6, 99);
-            this.labelRleEncodeCompression.Name = "labelRleEncodeCompression";
-            this.labelRleEncodeCompression.Size = new System.Drawing.Size(208, 16);
-            this.labelRleEncodeCompression.TabIndex = 6;
-            this.labelRleEncodeCompression.Text = "RLE Encode % compression:";
-            // 
             // groupBoxProgresses
             // 
             this.groupBoxProgresses.Controls.Add(this.progressBarLwzEncode);
@@ -304,6 +307,27 @@
             this.groupBoxProgresses.TabIndex = 7;
             this.groupBoxProgresses.TabStop = false;
             this.groupBoxProgresses.Text = "Progresses";
+            // 
+            // progressBarLwzEncode
+            // 
+            this.progressBarLwzEncode.Location = new System.Drawing.Point(215, 79);
+            this.progressBarLwzEncode.Name = "progressBarLwzEncode";
+            this.progressBarLwzEncode.Size = new System.Drawing.Size(236, 23);
+            this.progressBarLwzEncode.TabIndex = 5;
+            // 
+            // progressBarRleEncode
+            // 
+            this.progressBarRleEncode.Location = new System.Drawing.Point(215, 50);
+            this.progressBarRleEncode.Name = "progressBarRleEncode";
+            this.progressBarRleEncode.Size = new System.Drawing.Size(236, 23);
+            this.progressBarRleEncode.TabIndex = 4;
+            // 
+            // progressBarLoadPicture
+            // 
+            this.progressBarLoadPicture.Location = new System.Drawing.Point(215, 21);
+            this.progressBarLoadPicture.Name = "progressBarLoadPicture";
+            this.progressBarLoadPicture.Size = new System.Drawing.Size(236, 23);
+            this.progressBarLoadPicture.TabIndex = 3;
             // 
             // labelEncodeLwzProgress
             // 
@@ -332,28 +356,7 @@
             this.labelLoadePictureProgress.TabIndex = 0;
             this.labelLoadePictureProgress.Text = "Load picture progress:";
             // 
-            // progressBarLoadPicture
-            // 
-            this.progressBarLoadPicture.Location = new System.Drawing.Point(215, 21);
-            this.progressBarLoadPicture.Name = "progressBarLoadPicture";
-            this.progressBarLoadPicture.Size = new System.Drawing.Size(236, 23);
-            this.progressBarLoadPicture.TabIndex = 3;
-            // 
-            // progressBarRleEncode
-            // 
-            this.progressBarRleEncode.Location = new System.Drawing.Point(215, 50);
-            this.progressBarRleEncode.Name = "progressBarRleEncode";
-            this.progressBarRleEncode.Size = new System.Drawing.Size(236, 23);
-            this.progressBarRleEncode.TabIndex = 4;
-            // 
-            // progressBarLwzEncode
-            // 
-            this.progressBarLwzEncode.Location = new System.Drawing.Point(215, 79);
-            this.progressBarLwzEncode.Name = "progressBarLwzEncode";
-            this.progressBarLwzEncode.Size = new System.Drawing.Size(236, 23);
-            this.progressBarLwzEncode.TabIndex = 5;
-            // 
-            // RleLwzCompression
+            // RleLwzCompressionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -375,7 +378,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(995, 605);
             this.MinimumSize = new System.Drawing.Size(995, 605);
-            this.Name = "RleLwzCompression";
+            this.Name = "RleLwzCompressionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RLE LWZ Compression";
             this.menuStrip1.ResumeLayout(false);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,20 +12,25 @@ namespace RleLwzCompressionLibrary.Presenters
 {
     public class CompressionPresenter
     {
-        private readonly IRleLwzCompression _rleLwzCompression;
-        private readonly IAlgorithmsCompression _algorithmsCompression;
+        private readonly IRleLwzCompressionForm _rleLwzCompression;
+        private IAlgorithmsCompression _algorithmsCompression;
         private Picture _picture;
 
-        public CompressionPresenter(IRleLwzCompression rleLwzCompression,IAlgorithmsCompression algorithmsCompression)
+        public CompressionPresenter(IRleLwzCompressionForm rleLwzCompression)
         {
             _rleLwzCompression = rleLwzCompression;
-            _algorithmsCompression = algorithmsCompression;
 
             _rleLwzCompression.ButtonLoadPicture += _rleLwzCompression_ButtonLoadPicture;
+            _rleLwzCompression.ButtonShowLogView += _rleLwzCompression_ButtonShowLogView;
             _rleLwzCompression.ButtonEncodePicture += _rleLwzCompression_ButtonEncodePicture;
             _rleLwzCompression.ButtonDecodePicture += _rleLwzCompression_ButtonDecodePicture;
             _rleLwzCompression.ButtonCloseRleLwzCompressionForm+=_rleLwzCompression_ButtonCloseRleLwzCompressionForm;
             _rleLwzCompression.ButtonClearSources += _rleLwzCompression_ButtonClearSources;
+        }
+
+        void _rleLwzCompression_ButtonShowLogView()
+        {
+            throw new NotImplementedException();
         }
 
         void _rleLwzCompression_ButtonClearSources()
@@ -49,7 +55,14 @@ namespace RleLwzCompressionLibrary.Presenters
 
         void _rleLwzCompression_ButtonLoadPicture()
         {
-            throw new NotImplementedException();
+            var pathToPicture = _rleLwzCompression.LoadPicture();
+            _picture = new Picture
+            {
+                Path = pathToPicture,
+                Name = Path.GetFileName(pathToPicture),
+                Size = new FileInfo(pathToPicture).Length
+            };
+            _rleLwzCompression.ShowPicture(_picture);
         }
     }
 }

@@ -45,11 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RleLwzCompression.cs">
+    <Compile Include="RleLwzCompressionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RleLwzCompression.Designer.cs">
-      <DependentUpon>RleLwzCompression.cs</DependentUpon>
+    <Compile Include="RleLwzCompressionForm.Designer.cs">
+      <DependentUpon>RleLwzCompressionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,8 +62,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RleLwzCompression.resx">
-      <DependentUpon>RleLwzCompression.cs</DependentUpon>
+    <EmbeddedResource Include="RleLwzCompressionForm.resx">
+      <DependentUpon>RleLwzCompressionForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -77,6 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RleLwzCompressionLibrary\RleLwzCompressionLibrary.csproj">
+      <Project>{3E4609C8-88B7-45FE-A2AE-3B8434767F01}</Project>
+      <Name>RleLwzCompressionLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

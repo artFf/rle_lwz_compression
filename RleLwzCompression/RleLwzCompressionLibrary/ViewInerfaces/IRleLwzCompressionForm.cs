@@ -3,9 +3,10 @@ using RleLwzCompressionLibrary.Models;
 
 namespace RleLwzCompressionLibrary.ViewInerfaces
 {
-    public interface IRleLwzCompression
+    public interface IRleLwzCompressionForm
     {
         event Action ButtonLoadPicture;
+        event Action ButtonShowLogView;
         event Action ButtonCloseRleLwzCompressionForm;
         event Action ButtonEncodePicture;
         event Action ButtonDecodePicture;
@@ -14,6 +15,6 @@ namespace RleLwzCompressionLibrary.ViewInerfaces
         void ShowPicture(Picture picture);
         void CloseForm();
         void ClearSources();
-        void LoadPicture();
+        string LoadPicture();
     }
 }
