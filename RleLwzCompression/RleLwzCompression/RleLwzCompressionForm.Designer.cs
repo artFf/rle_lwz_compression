@@ -49,9 +49,9 @@
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
             this.labelLwzEncodeCompression = new System.Windows.Forms.Label();
             this.labelRleEncodeCompression = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelPathToEncodedPicture = new System.Windows.Forms.Label();
+            this.labelLwzEncodeSize = new System.Windows.Forms.Label();
+            this.labelRleEncodeSize = new System.Windows.Forms.Label();
             this.groupBoxProgresses = new System.Windows.Forms.GroupBox();
             this.progressBarLwzEncode = new System.Windows.Forms.ProgressBar();
             this.progressBarRleEncode = new System.Windows.Forms.ProgressBar();
@@ -236,9 +236,9 @@
             this.groupBoxInfo.Controls.Add(this.labelLoadedPicturePath);
             this.groupBoxInfo.Controls.Add(this.labelRleEncodeCompression);
             this.groupBoxInfo.Controls.Add(this.labelLoadedPictureName);
-            this.groupBoxInfo.Controls.Add(this.label3);
-            this.groupBoxInfo.Controls.Add(this.label4);
-            this.groupBoxInfo.Controls.Add(this.label5);
+            this.groupBoxInfo.Controls.Add(this.labelPathToEncodedPicture);
+            this.groupBoxInfo.Controls.Add(this.labelLwzEncodeSize);
+            this.groupBoxInfo.Controls.Add(this.labelRleEncodeSize);
             this.groupBoxInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxInfo.Location = new System.Drawing.Point(485, 327);
             this.groupBoxInfo.Name = "groupBoxInfo";
@@ -265,32 +265,32 @@
             this.labelRleEncodeCompression.TabIndex = 6;
             this.labelRleEncodeCompression.Text = "RLE Encode % compression:";
             // 
-            // label3
+            // labelPathToEncodedPicture
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 204);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(158, 16);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Path to encoded files:";
+            this.labelPathToEncodedPicture.AutoSize = true;
+            this.labelPathToEncodedPicture.Location = new System.Drawing.Point(6, 204);
+            this.labelPathToEncodedPicture.Name = "labelPathToEncodedPicture";
+            this.labelPathToEncodedPicture.Size = new System.Drawing.Size(158, 16);
+            this.labelPathToEncodedPicture.TabIndex = 5;
+            this.labelPathToEncodedPicture.Text = "Path to encoded files:";
             // 
-            // label4
+            // labelLwzEncodeSize
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 178);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 16);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "LZW Encode size:";
+            this.labelLwzEncodeSize.AutoSize = true;
+            this.labelLwzEncodeSize.Location = new System.Drawing.Point(6, 178);
+            this.labelLwzEncodeSize.Name = "labelLwzEncodeSize";
+            this.labelLwzEncodeSize.Size = new System.Drawing.Size(132, 16);
+            this.labelLwzEncodeSize.TabIndex = 4;
+            this.labelLwzEncodeSize.Text = "LZW Encode size:";
             // 
-            // label5
+            // labelRleEncodeSize
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 153);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 16);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "RLE Encode size:";
+            this.labelRleEncodeSize.AutoSize = true;
+            this.labelRleEncodeSize.Location = new System.Drawing.Point(6, 153);
+            this.labelRleEncodeSize.Name = "labelRleEncodeSize";
+            this.labelRleEncodeSize.Size = new System.Drawing.Size(130, 16);
+            this.labelRleEncodeSize.TabIndex = 3;
+            this.labelRleEncodeSize.Text = "RLE Encode size:";
             // 
             // groupBoxProgresses
             // 
@@ -418,9 +418,9 @@
         private System.Windows.Forms.GroupBox groupBoxInfo;
         private System.Windows.Forms.Label labelLwzEncodeCompression;
         private System.Windows.Forms.Label labelRleEncodeCompression;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelPathToEncodedPicture;
+        private System.Windows.Forms.Label labelLwzEncodeSize;
+        private System.Windows.Forms.Label labelRleEncodeSize;
         private System.Windows.Forms.GroupBox groupBoxProgresses;
         private System.Windows.Forms.ProgressBar progressBarLwzEncode;
         private System.Windows.Forms.ProgressBar progressBarRleEncode;

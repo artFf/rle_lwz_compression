@@ -28,8 +28,6 @@ namespace RleLwzCompression
             rleLwzCompressionForm.StartPosition = FormStartPosition.CenterScreen;
             rleLwzCompressionForm.FormBorderStyle = FormBorderStyle.FixedSingle;
             rleLwzCompressionForm.MaximizeBox = false;
-            string fg = OpenFileDialogEnums.Filter.ToString();
-            var hjh = OpenFileDialogEnums.Filter.GetStringValue();
             Application.Run(rleLwzCompressionForm);
         }
     }
