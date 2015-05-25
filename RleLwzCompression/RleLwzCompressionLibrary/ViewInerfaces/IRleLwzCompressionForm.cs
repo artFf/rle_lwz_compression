@@ -13,6 +13,13 @@ namespace RleLwzCompressionLibrary.ViewInerfaces
         event Action ButtonClearSources;
 
         void ShowPicture(Picture picture);
+        void ShowRleEncoded(Picture picture);
+        void ShowLwzEncoded(Picture picture);
+        void ShowRleDecoded(Picture picture);
+        void ShowLwzDecoded(Picture picture);
+        void ShowLogView();
+        Picture GetRleEncodedPicture();
+        Picture GetLwzEncodedPicture();
         void CloseForm();
         void ClearSources();
         string LoadPicture();

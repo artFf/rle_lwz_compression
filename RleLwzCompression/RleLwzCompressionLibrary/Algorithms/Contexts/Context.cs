@@ -27,9 +27,9 @@ namespace RleLwzCompressionLibrary.Algorithms.Contexts
             return AlgorithmsCompression.Encode(picture);
         }
 
-        public Picture ExuceteDecode(Picture picture)
+        public Picture ExuceteDecode(Picture picture, int size)
         {
-            return AlgorithmsCompression.Decode(picture);
+            return AlgorithmsCompression.Decode(picture, size);
         }
     }
 }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RleLwzCompressionLibrary.Algorithms.Interfaces;
+﻿using System.IO;
+using RleLwzCompressionLibrary.Algorithms.Contexts;
+using RleLwzCompressionLibrary.Algorithms.Realisations;
 using RleLwzCompressionLibrary.Models;
 using RleLwzCompressionLibrary.ViewInerfaces;
 
@@ -13,7 +9,6 @@ namespace RleLwzCompressionLibrary.Presenters
     public class CompressionPresenter
     {
         private readonly IRleLwzCompressionForm _rleLwzCompression;
-        private IAlgorithmsCompression _algorithmsCompression;
         private Picture _picture;
 
         public CompressionPresenter(IRleLwzCompressionForm rleLwzCompression)
@@ -30,27 +25,39 @@ namespace RleLwzCompressionLibrary.Presenters
 
         void _rleLwzCompression_ButtonShowLogView()
         {
-            throw new NotImplementedException();
+            _rleLwzCompression.ShowLogView();
         }
 
         void _rleLwzCompression_ButtonClearSources()
         {
-            throw new NotImplementedException();
+            _rleLwzCompression.ClearSources();
         }
 
         void _rleLwzCompression_ButtonCloseRleLwzCompressionForm()
         {
-            throw new NotImplementedException();
+            _rleLwzCompression.CloseForm();
         }
 
         void _rleLwzCompression_ButtonDecodePicture()
         {
-            throw new NotImplementedException();
+            var compressionsAlgorithms = new Context(new Rle());
+            var rleDecodedPicture = compressionsAlgorithms.ExuceteDecode(_rleLwzCompression.GetRleEncodedPicture(), (int)_picture.Size);
+            _rleLwzCompression.ShowRleDecoded(rleDecodedPicture);
+
+            //compressionsAlgorithms.SetAlgorithm(new Lwz());
+            //var lwzDecodedPicture = compressionsAlgorithms.ExuceteDecode(_picture);
+            //_rleLwzCompression.ShowLwzDecoded(lwzDecodedPicture);
         }
 
         void _rleLwzCompression_ButtonEncodePicture()
         {
-            throw new NotImplementedException();
+            var compressionsAlgorithms = new Context(new Rle());
+            var rleEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
+            _rleLwzCompression.ShowRleEncoded(rleEncodedPicture);
+
+            //compressionsAlgorithms.SetAlgorithm(new Lwz());
+            //var lwzEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
+            //_rleLwzCompression.ShowLwzEncoded(lwzEncodedPicture);
         }
 
         void _rleLwzCompression_ButtonLoadPicture()
@@ -63,6 +70,11 @@ namespace RleLwzCompressionLibrary.Presenters
                 Size = new FileInfo(pathToPicture).Length
             };
             _rleLwzCompression.ShowPicture(_picture);
+        }
+
+        private void PrintToFile()
+        {
+            
         }
     }
 }
