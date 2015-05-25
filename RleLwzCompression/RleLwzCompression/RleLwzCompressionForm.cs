@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,10 @@ namespace RleLwzCompression
 
         #endregion
 
+        private Picture LPicture { get; set; }
+        private Picture RlePicture { get; set; }
+        private Picture LwzPicture { get; set; }
+
         public RleLwzCompressionForm()
         {
             InitializeComponent();
@@ -35,15 +40,59 @@ namespace RleLwzCompression
         
         public void ShowPicture(Picture picture)
         {
-            pictureBoxLoadedPicture.Image = new Bitmap(picture.Path);
-            labelLoadedPictureName.Text += string.Format(" {0}", picture.Name);
-            labelLoadedPicturePath.Text += string.Format(" {0}", picture.Path);
-            labelLoadedPictureSize.Text += string.Format(" {0}", picture.Size);
+            LPicture = picture;
+            pictureBoxLoadedPicture.Image = new Bitmap(LPicture.Path);
+            labelLoadedPictureName.Text += string.Format(" {0}", LPicture.Name);
+            labelLoadedPicturePath.Text += string.Format(" {0}", LPicture.Path);
+            labelLoadedPictureSize.Text += string.Format(" {0}", LPicture.Size);
+            labelPathToEncodedPicture.Text += string.Format(" {0}", Path.GetFullPath(LPicture.Path));
+        }
+
+        public void ShowRleEncoded(Picture picture)
+        {
+            RlePicture = picture;
+            //todo check need to convert to double
+            labelRleEncodeCompression.Text += string.Format(" {0}", Convert.ToDouble(RlePicture.Size) / Convert.ToDouble(LPicture.Size) * 100.0);
+            labelRleEncodeSize.Text += string.Format(" {0}", RlePicture.Size);
+        }
+
+        public void ShowLwzEncoded(Picture picture)
+        {
+            LwzPicture = picture;
+            labelLwzEncodeCompression.Text += string.Format(" {0}", (float)LwzPicture.Size / (float)LPicture.Size * 100);
+            labelLwzEncodeSize.Text += string.Format(" {0}", LwzPicture.Size);
+        }
+
+        public void ShowRleDecoded(Picture picture)
+        {
+            RlePicture = picture;
+            pictureBoxRleDecodePicture.Image = new Bitmap(new MemoryStream(RlePicture.DecodedContents));
+        }
+
+        public void ShowLwzDecoded(Picture picture)
+        {
+            LwzPicture = picture;
+            pictureBoxLwzDecodePicture.Image = new Bitmap(new MemoryStream(LwzPicture.DecodedContents));
+        }
+
+        public void ShowLogView()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Picture GetRleEncodedPicture()
+        {
+            return RlePicture;
+        }
+
+        public Picture GetLwzEncodedPicture()
+        {
+            return LwzPicture;
         }
 
         public void CloseForm()
         {
-            throw new NotImplementedException();
+            this.Close();
         }
 
         public void ClearSources()
