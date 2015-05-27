@@ -44,9 +44,9 @@ namespace RleLwzCompressionLibrary.Presenters
             var rleDecodedPicture = compressionsAlgorithms.ExuceteDecode(_rleLwzCompression.GetRleEncodedPicture(), (int)_picture.Size);
             _rleLwzCompression.ShowRleDecoded(rleDecodedPicture);
 
-            //compressionsAlgorithms.SetAlgorithm(new Lwz());
-            //var lwzDecodedPicture = compressionsAlgorithms.ExuceteDecode(_picture);
-            //_rleLwzCompression.ShowLwzDecoded(lwzDecodedPicture);
+            compressionsAlgorithms.SetAlgorithm(new Lwz());
+            var lwzDecodedPicture = compressionsAlgorithms.ExuceteDecode(_rleLwzCompression.GetLwzEncodedPicture(),(int)_picture.Size);
+            _rleLwzCompression.ShowLwzDecoded(lwzDecodedPicture);
         }
 
         void _rleLwzCompression_ButtonEncodePicture()
@@ -55,9 +55,9 @@ namespace RleLwzCompressionLibrary.Presenters
             var rleEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
             _rleLwzCompression.ShowRleEncoded(rleEncodedPicture);
 
-            //compressionsAlgorithms.SetAlgorithm(new Lwz());
-            //var lwzEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
-            //_rleLwzCompression.ShowLwzEncoded(lwzEncodedPicture);
+            compressionsAlgorithms.SetAlgorithm(new Lwz());
+            var lwzEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
+            _rleLwzCompression.ShowLwzEncoded(lwzEncodedPicture);
         }
 
         void _rleLwzCompression_ButtonLoadPicture()
