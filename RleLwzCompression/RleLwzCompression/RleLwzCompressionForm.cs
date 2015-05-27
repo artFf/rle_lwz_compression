@@ -42,25 +42,25 @@ namespace RleLwzCompression
         {
             LPicture = picture;
             pictureBoxLoadedPicture.Image = new Bitmap(LPicture.Path);
-            labelLoadedPictureName.Text += string.Format(" {0}", LPicture.Name);
-            labelLoadedPicturePath.Text += string.Format(" {0}", LPicture.Path);
-            labelLoadedPictureSize.Text += string.Format(" {0}", LPicture.Size);
-            labelPathToEncodedPicture.Text += string.Format(" {0}", Path.GetFullPath(LPicture.Path));
+            labelLPicN.Text = string.Format(" {0}", LPicture.Name);
+            labelLPicP.Text = string.Format(" {0}", LPicture.Path);
+            labelLPicS.Text = string.Format(" {0}", LPicture.Size);
+            labelPath.Text = string.Format(" {0}", Path.GetFullPath(LPicture.Path));
         }
 
         public void ShowRleEncoded(Picture picture)
         {
             RlePicture = picture;
             //todo check need to convert to double
-            labelRleEncodeCompression.Text += string.Format(" {0}", Convert.ToDouble(RlePicture.Size) / Convert.ToDouble(LPicture.Size) * 100.0);
-            labelRleEncodeSize.Text += string.Format(" {0}", RlePicture.Size);
+            labelRleComressionResult.Text = string.Format(" {0}", (float)RlePicture.Size / (float)LPicture.Size * 100);
+            labelRleSize.Text = string.Format(" {0}", RlePicture.Size);
         }
 
         public void ShowLwzEncoded(Picture picture)
         {
             LwzPicture = picture;
-            labelLwzEncodeCompression.Text += string.Format(" {0}", (float)LwzPicture.Size / (float)LPicture.Size * 100);
-            labelLwzEncodeSize.Text += string.Format(" {0}", LwzPicture.Size);
+            labelLWZComressinResult.Text = string.Format(" {0}", (float)LwzPicture.Size / (float)LPicture.Size * 100);
+            labelLwzSize.Text = string.Format(" {0}", LwzPicture.Size);
         }
 
         public void ShowRleDecoded(Picture picture)

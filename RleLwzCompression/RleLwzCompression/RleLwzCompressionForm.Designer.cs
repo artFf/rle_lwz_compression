@@ -59,6 +59,14 @@
             this.labelEncodeLwzProgress = new System.Windows.Forms.Label();
             this.labelEncodeRleProgress = new System.Windows.Forms.Label();
             this.labelLoadePictureProgress = new System.Windows.Forms.Label();
+            this.labelRleComressionResult = new System.Windows.Forms.Label();
+            this.labelLWZComressinResult = new System.Windows.Forms.Label();
+            this.labelRleSize = new System.Windows.Forms.Label();
+            this.labelLwzSize = new System.Windows.Forms.Label();
+            this.labelPath = new System.Windows.Forms.Label();
+            this.labelLPicN = new System.Windows.Forms.Label();
+            this.labelLPicP = new System.Windows.Forms.Label();
+            this.labelLPicS = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoadedPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRleDecodePicture)).BeginInit();
@@ -231,6 +239,14 @@
             // 
             // groupBoxInfo
             // 
+            this.groupBoxInfo.Controls.Add(this.labelLPicS);
+            this.groupBoxInfo.Controls.Add(this.labelLPicP);
+            this.groupBoxInfo.Controls.Add(this.labelLPicN);
+            this.groupBoxInfo.Controls.Add(this.labelPath);
+            this.groupBoxInfo.Controls.Add(this.labelLwzSize);
+            this.groupBoxInfo.Controls.Add(this.labelRleSize);
+            this.groupBoxInfo.Controls.Add(this.labelLWZComressinResult);
+            this.groupBoxInfo.Controls.Add(this.labelRleComressionResult);
             this.groupBoxInfo.Controls.Add(this.labelLoadedPictureSize);
             this.groupBoxInfo.Controls.Add(this.labelLwzEncodeCompression);
             this.groupBoxInfo.Controls.Add(this.labelLoadedPicturePath);
@@ -356,6 +372,78 @@
             this.labelLoadePictureProgress.TabIndex = 0;
             this.labelLoadePictureProgress.Text = "Load picture progress:";
             // 
+            // labelRleComressionResult
+            // 
+            this.labelRleComressionResult.AutoSize = true;
+            this.labelRleComressionResult.Location = new System.Drawing.Point(220, 99);
+            this.labelRleComressionResult.Name = "labelRleComressionResult";
+            this.labelRleComressionResult.Size = new System.Drawing.Size(65, 16);
+            this.labelRleComressionResult.TabIndex = 8;
+            this.labelRleComressionResult.Text = "cmpRes";
+            // 
+            // labelLWZComressinResult
+            // 
+            this.labelLWZComressinResult.AutoSize = true;
+            this.labelLWZComressinResult.Location = new System.Drawing.Point(220, 125);
+            this.labelLWZComressinResult.Name = "labelLWZComressinResult";
+            this.labelLWZComressinResult.Size = new System.Drawing.Size(65, 16);
+            this.labelLWZComressinResult.TabIndex = 9;
+            this.labelLWZComressinResult.Text = "cmpRes";
+            // 
+            // labelRleSize
+            // 
+            this.labelRleSize.AutoSize = true;
+            this.labelRleSize.Location = new System.Drawing.Point(142, 153);
+            this.labelRleSize.Name = "labelRleSize";
+            this.labelRleSize.Size = new System.Drawing.Size(36, 16);
+            this.labelRleSize.TabIndex = 10;
+            this.labelRleSize.Text = "rleS";
+            // 
+            // labelLwzSize
+            // 
+            this.labelLwzSize.AutoSize = true;
+            this.labelLwzSize.Location = new System.Drawing.Point(144, 178);
+            this.labelLwzSize.Name = "labelLwzSize";
+            this.labelLwzSize.Size = new System.Drawing.Size(39, 16);
+            this.labelLwzSize.TabIndex = 11;
+            this.labelLwzSize.Text = "lwzS";
+            // 
+            // labelPath
+            // 
+            this.labelPath.AutoSize = true;
+            this.labelPath.Location = new System.Drawing.Point(170, 204);
+            this.labelPath.Name = "labelPath";
+            this.labelPath.Size = new System.Drawing.Size(38, 16);
+            this.labelPath.TabIndex = 12;
+            this.labelPath.Text = "path";
+            // 
+            // labelLPicN
+            // 
+            this.labelLPicN.AutoSize = true;
+            this.labelLPicN.Location = new System.Drawing.Point(170, 18);
+            this.labelLPicN.Name = "labelLPicN";
+            this.labelLPicN.Size = new System.Drawing.Size(53, 16);
+            this.labelLPicN.TabIndex = 13;
+            this.labelLPicN.Text = "lName";
+            // 
+            // labelLPicP
+            // 
+            this.labelLPicP.AutoSize = true;
+            this.labelLPicP.Location = new System.Drawing.Point(170, 47);
+            this.labelLPicP.Name = "labelLPicP";
+            this.labelLPicP.Size = new System.Drawing.Size(43, 16);
+            this.labelLPicP.TabIndex = 14;
+            this.labelLPicP.Text = "lPath";
+            // 
+            // labelLPicS
+            // 
+            this.labelLPicS.AutoSize = true;
+            this.labelLPicS.Location = new System.Drawing.Point(170, 74);
+            this.labelLPicS.Name = "labelLPicS";
+            this.labelLPicS.Size = new System.Drawing.Size(42, 16);
+            this.labelLPicS.TabIndex = 15;
+            this.labelLPicS.Text = "lSize";
+            // 
             // RleLwzCompressionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -428,6 +516,14 @@
         private System.Windows.Forms.Label labelEncodeLwzProgress;
         private System.Windows.Forms.Label labelEncodeRleProgress;
         private System.Windows.Forms.Label labelLoadePictureProgress;
+        private System.Windows.Forms.Label labelLPicS;
+        private System.Windows.Forms.Label labelLPicP;
+        private System.Windows.Forms.Label labelLPicN;
+        private System.Windows.Forms.Label labelPath;
+        private System.Windows.Forms.Label labelLwzSize;
+        private System.Windows.Forms.Label labelRleSize;
+        private System.Windows.Forms.Label labelLWZComressinResult;
+        private System.Windows.Forms.Label labelRleComressionResult;
     }
 }
 
