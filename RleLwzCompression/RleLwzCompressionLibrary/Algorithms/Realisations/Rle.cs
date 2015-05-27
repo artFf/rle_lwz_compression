@@ -37,6 +37,7 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
 
         public Picture Decode(Picture picture, int size)
         {
+            //todo
             var decodedPicture = picture;
             decodedPicture.DecodedContents = new byte[size];
             int step = 0;
