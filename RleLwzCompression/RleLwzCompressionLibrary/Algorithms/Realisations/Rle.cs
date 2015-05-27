@@ -30,7 +30,8 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
                 encodedPicture.EncodedContents[ii] = pictureInbytes[i];
                 ii++;
             }
-            
+            encodedPicture.Path = Path.GetDirectoryName(encodedPicture.Path) + "\\rleEncode";
+            File.WriteAllBytes(encodedPicture.Path,encodedPicture.EncodedContents);
             encodedPicture.Size = encodedPicture.EncodedContents.Length;
             return encodedPicture;
         }

@@ -51,6 +51,8 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
 
             encodedPicture.EncodedIntContents = compressed.ToArray();
             encodedPicture.Size = encodedPicture.EncodedIntContents.Length;
+            encodedPicture.Path = Path.GetDirectoryName(encodedPicture.Path) + "/lwzEncode";
+            File.WriteAllLines(encodedPicture.Path, encodedPicture.EncodedIntContents.Select(i=>i.ToString()));
             return encodedPicture;
         }
 
