@@ -7,5 +7,7 @@
         public long Size { get; set; }
         public byte[] EncodedContents { get; set; }
         public byte[] DecodedContents { get; set; }
+        public int[] EncodedIntContents { get; set; }
+        public int[] DecodedIntContents { get; set; }
     }
 }
