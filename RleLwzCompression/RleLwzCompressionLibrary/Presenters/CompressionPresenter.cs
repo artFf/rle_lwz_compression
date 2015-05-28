@@ -2,6 +2,7 @@
 using RleLwzCompressionLibrary.Algorithms.Contexts;
 using RleLwzCompressionLibrary.Algorithms.Realisations;
 using RleLwzCompressionLibrary.Models;
+using RleLwzCompressionLibrary.SimpleFactory;
 using RleLwzCompressionLibrary.ViewInerfaces;
 
 namespace RleLwzCompressionLibrary.Presenters
@@ -40,22 +41,26 @@ namespace RleLwzCompressionLibrary.Presenters
 
         void _rleLwzCompression_ButtonDecodePicture()
         {
-            var compressionsAlgorithms = new Context(new Rle());
+            //var compressionsAlgorithms = new Context(new Rle());
+            var compressionsAlgorithms = new Context(AlgorithmsFactory.CreateInstance<Rle>());
             var rleDecodedPicture = compressionsAlgorithms.ExuceteDecode(_rleLwzCompression.GetRleEncodedPicture(), (int)_picture.Size);
             _rleLwzCompression.ShowRleDecoded(rleDecodedPicture);
 
-            compressionsAlgorithms.SetAlgorithm(new Lwz());
+            //compressionsAlgorithms.SetAlgorithm(new Lwz());
+            compressionsAlgorithms.SetAlgorithm(AlgorithmsFactory.CreateInstance<Lwz>());
             var lwzDecodedPicture = compressionsAlgorithms.ExuceteDecode(_rleLwzCompression.GetLwzEncodedPicture(),(int)_picture.Size);
             _rleLwzCompression.ShowLwzDecoded(lwzDecodedPicture);
         }
 
         void _rleLwzCompression_ButtonEncodePicture()
         {
-            var compressionsAlgorithms = new Context(new Rle());
+            //var compressionsAlgorithms = new Context(new Rle());
+            var compressionsAlgorithms = new Context(AlgorithmsFactory.CreateInstance<Rle>());
             var rleEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
             _rleLwzCompression.ShowRleEncoded(rleEncodedPicture);
 
-            compressionsAlgorithms.SetAlgorithm(new Lwz());
+            //compressionsAlgorithms.SetAlgorithm(new Lwz());
+            compressionsAlgorithms.SetAlgorithm(AlgorithmsFactory.CreateInstance<Lwz>());
             var lwzEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
             _rleLwzCompression.ShowLwzEncoded(lwzEncodedPicture);
         }

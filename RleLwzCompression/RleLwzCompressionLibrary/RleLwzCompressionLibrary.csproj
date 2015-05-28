@@ -49,6 +49,7 @@
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Presenters\CompressionPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleFactory\AlgorithmsFactory.cs" />
     <Compile Include="ViewInerfaces\IRleLwzCompressionForm.cs" />
   </ItemGroup>
   <ItemGroup>
