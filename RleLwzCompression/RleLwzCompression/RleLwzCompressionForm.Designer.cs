@@ -61,10 +61,8 @@
             this.groupBoxProgresses = new System.Windows.Forms.GroupBox();
             this.progressBarLwzEncode = new System.Windows.Forms.ProgressBar();
             this.progressBarRleEncode = new System.Windows.Forms.ProgressBar();
-            this.progressBarLoadPicture = new System.Windows.Forms.ProgressBar();
             this.labelEncodeLwzProgress = new System.Windows.Forms.Label();
             this.labelEncodeRleProgress = new System.Windows.Forms.Label();
-            this.labelLoadePictureProgress = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoadedPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRleDecodePicture)).BeginInit();
@@ -80,7 +78,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(979, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(758, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -124,7 +122,7 @@
             this.pictureBoxLoadedPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxLoadedPicture.Location = new System.Drawing.Point(12, 70);
             this.pictureBoxLoadedPicture.Name = "pictureBoxLoadedPicture";
-            this.pictureBoxLoadedPicture.Size = new System.Drawing.Size(299, 234);
+            this.pictureBoxLoadedPicture.Size = new System.Drawing.Size(201, 175);
             this.pictureBoxLoadedPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLoadedPicture.TabIndex = 1;
             this.pictureBoxLoadedPicture.TabStop = false;
@@ -133,9 +131,9 @@
             // 
             this.pictureBoxRleDecodePicture.BackColor = System.Drawing.SystemColors.MenuBar;
             this.pictureBoxRleDecodePicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxRleDecodePicture.Location = new System.Drawing.Point(337, 70);
+            this.pictureBoxRleDecodePicture.Location = new System.Drawing.Point(12, 273);
             this.pictureBoxRleDecodePicture.Name = "pictureBoxRleDecodePicture";
-            this.pictureBoxRleDecodePicture.Size = new System.Drawing.Size(299, 234);
+            this.pictureBoxRleDecodePicture.Size = new System.Drawing.Size(201, 175);
             this.pictureBoxRleDecodePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxRleDecodePicture.TabIndex = 2;
             this.pictureBoxRleDecodePicture.TabStop = false;
@@ -144,16 +142,16 @@
             // 
             this.pictureBoxLwzDecodePicture.BackColor = System.Drawing.SystemColors.MenuBar;
             this.pictureBoxLwzDecodePicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxLwzDecodePicture.Location = new System.Drawing.Point(667, 70);
+            this.pictureBoxLwzDecodePicture.Location = new System.Drawing.Point(12, 479);
             this.pictureBoxLwzDecodePicture.Name = "pictureBoxLwzDecodePicture";
-            this.pictureBoxLwzDecodePicture.Size = new System.Drawing.Size(299, 234);
+            this.pictureBoxLwzDecodePicture.Size = new System.Drawing.Size(201, 175);
             this.pictureBoxLwzDecodePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLwzDecodePicture.TabIndex = 3;
             this.pictureBoxLwzDecodePicture.TabStop = false;
             // 
             // buttonEncode
             // 
-            this.buttonEncode.Location = new System.Drawing.Point(104, 515);
+            this.buttonEncode.Location = new System.Drawing.Point(240, 377);
             this.buttonEncode.Name = "buttonEncode";
             this.buttonEncode.Size = new System.Drawing.Size(75, 23);
             this.buttonEncode.TabIndex = 4;
@@ -162,7 +160,7 @@
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(293, 515);
+            this.buttonClear.Location = new System.Drawing.Point(240, 435);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(75, 23);
             this.buttonClear.TabIndex = 5;
@@ -210,7 +208,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(333, 47);
+            this.label1.Location = new System.Drawing.Point(12, 250);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 20);
             this.label1.TabIndex = 9;
@@ -220,7 +218,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(663, 47);
+            this.label2.Location = new System.Drawing.Point(12, 456);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 20);
             this.label2.TabIndex = 10;
@@ -228,7 +226,7 @@
             // 
             // buttonDecode
             // 
-            this.buttonDecode.Location = new System.Drawing.Point(196, 515);
+            this.buttonDecode.Location = new System.Drawing.Point(240, 406);
             this.buttonDecode.Name = "buttonDecode";
             this.buttonDecode.Size = new System.Drawing.Size(75, 23);
             this.buttonDecode.TabIndex = 11;
@@ -252,9 +250,9 @@
             this.groupBoxInfo.Controls.Add(this.labelLwzEncodeSize);
             this.groupBoxInfo.Controls.Add(this.labelRleEncodeSize);
             this.groupBoxInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxInfo.Location = new System.Drawing.Point(485, 327);
+            this.groupBoxInfo.Location = new System.Drawing.Point(240, 164);
             this.groupBoxInfo.Name = "groupBoxInfo";
-            this.groupBoxInfo.Size = new System.Drawing.Size(481, 233);
+            this.groupBoxInfo.Size = new System.Drawing.Size(481, 207);
             this.groupBoxInfo.TabIndex = 7;
             this.groupBoxInfo.TabStop = false;
             this.groupBoxInfo.Text = "Info";
@@ -362,43 +360,34 @@
             // 
             this.groupBoxProgresses.Controls.Add(this.progressBarLwzEncode);
             this.groupBoxProgresses.Controls.Add(this.progressBarRleEncode);
-            this.groupBoxProgresses.Controls.Add(this.progressBarLoadPicture);
             this.groupBoxProgresses.Controls.Add(this.labelEncodeLwzProgress);
             this.groupBoxProgresses.Controls.Add(this.labelEncodeRleProgress);
-            this.groupBoxProgresses.Controls.Add(this.labelLoadePictureProgress);
             this.groupBoxProgresses.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxProgresses.Location = new System.Drawing.Point(12, 327);
+            this.groupBoxProgresses.Location = new System.Drawing.Point(240, 70);
             this.groupBoxProgresses.Name = "groupBoxProgresses";
-            this.groupBoxProgresses.Size = new System.Drawing.Size(467, 169);
+            this.groupBoxProgresses.Size = new System.Drawing.Size(481, 88);
             this.groupBoxProgresses.TabIndex = 7;
             this.groupBoxProgresses.TabStop = false;
             this.groupBoxProgresses.Text = "Progresses";
             // 
             // progressBarLwzEncode
             // 
-            this.progressBarLwzEncode.Location = new System.Drawing.Point(215, 79);
+            this.progressBarLwzEncode.Location = new System.Drawing.Point(214, 50);
             this.progressBarLwzEncode.Name = "progressBarLwzEncode";
-            this.progressBarLwzEncode.Size = new System.Drawing.Size(236, 23);
+            this.progressBarLwzEncode.Size = new System.Drawing.Size(261, 23);
             this.progressBarLwzEncode.TabIndex = 5;
             // 
             // progressBarRleEncode
             // 
-            this.progressBarRleEncode.Location = new System.Drawing.Point(215, 50);
+            this.progressBarRleEncode.Location = new System.Drawing.Point(214, 21);
             this.progressBarRleEncode.Name = "progressBarRleEncode";
-            this.progressBarRleEncode.Size = new System.Drawing.Size(236, 23);
+            this.progressBarRleEncode.Size = new System.Drawing.Size(261, 23);
             this.progressBarRleEncode.TabIndex = 4;
-            // 
-            // progressBarLoadPicture
-            // 
-            this.progressBarLoadPicture.Location = new System.Drawing.Point(215, 21);
-            this.progressBarLoadPicture.Name = "progressBarLoadPicture";
-            this.progressBarLoadPicture.Size = new System.Drawing.Size(236, 23);
-            this.progressBarLoadPicture.TabIndex = 3;
             // 
             // labelEncodeLwzProgress
             // 
             this.labelEncodeLwzProgress.AutoSize = true;
-            this.labelEncodeLwzProgress.Location = new System.Drawing.Point(4, 86);
+            this.labelEncodeLwzProgress.Location = new System.Drawing.Point(3, 57);
             this.labelEncodeLwzProgress.Name = "labelEncodeLwzProgress";
             this.labelEncodeLwzProgress.Size = new System.Drawing.Size(166, 16);
             this.labelEncodeLwzProgress.TabIndex = 2;
@@ -407,27 +396,18 @@
             // labelEncodeRleProgress
             // 
             this.labelEncodeRleProgress.AutoSize = true;
-            this.labelEncodeRleProgress.Location = new System.Drawing.Point(6, 57);
+            this.labelEncodeRleProgress.Location = new System.Drawing.Point(3, 28);
             this.labelEncodeRleProgress.Name = "labelEncodeRleProgress";
             this.labelEncodeRleProgress.Size = new System.Drawing.Size(164, 16);
             this.labelEncodeRleProgress.TabIndex = 1;
             this.labelEncodeRleProgress.Text = "Encode RLE progress:";
-            // 
-            // labelLoadePictureProgress
-            // 
-            this.labelLoadePictureProgress.AutoSize = true;
-            this.labelLoadePictureProgress.Location = new System.Drawing.Point(6, 28);
-            this.labelLoadePictureProgress.Name = "labelLoadePictureProgress";
-            this.labelLoadePictureProgress.Size = new System.Drawing.Size(164, 16);
-            this.labelLoadePictureProgress.TabIndex = 0;
-            this.labelLoadePictureProgress.Text = "Load picture progress:";
             // 
             // RleLwzCompressionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(979, 567);
+            this.ClientSize = new System.Drawing.Size(758, 693);
             this.Controls.Add(this.groupBoxProgresses);
             this.Controls.Add(this.groupBoxInfo);
             this.Controls.Add(this.buttonDecode);
@@ -442,8 +422,6 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(995, 605);
-            this.MinimumSize = new System.Drawing.Size(995, 605);
             this.Name = "RleLwzCompressionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RLE LWZ Compression";
@@ -489,10 +467,8 @@
         private System.Windows.Forms.GroupBox groupBoxProgresses;
         private System.Windows.Forms.ProgressBar progressBarLwzEncode;
         private System.Windows.Forms.ProgressBar progressBarRleEncode;
-        private System.Windows.Forms.ProgressBar progressBarLoadPicture;
         private System.Windows.Forms.Label labelEncodeLwzProgress;
         private System.Windows.Forms.Label labelEncodeRleProgress;
-        private System.Windows.Forms.Label labelLoadePictureProgress;
         private System.Windows.Forms.Label labelLPicS;
         private System.Windows.Forms.Label labelLPicP;
         private System.Windows.Forms.Label labelLPicN;

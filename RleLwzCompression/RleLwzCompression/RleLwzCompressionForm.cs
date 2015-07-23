@@ -36,15 +36,27 @@ namespace RleLwzCompression
         {
             InitializeComponent();
             CreateActions();
+            InitializeControls();
         }
-        
+
         public void ShowPicture(Picture picture)
         {
             LPicture = picture;
             pictureBoxLoadedPicture.Image = new Bitmap(LPicture.Path);
             labelLPicN.Text = string.Format(" {0}", LPicture.Name);
-            labelLPicP.Text = string.Format(" {0}", LPicture.Path);
+            labelLPicP.Text = string.Format(" {0}", (LPicture.Path.Length > 35) ? "..." + LPicture.Path.Substring(LPicture.Path.Length - 35, 35) : LPicture.Path);
             labelLPicS.Text = string.Format(" {0}", LPicture.Size);
+        }
+
+        private void InitializeControls()
+        {
+            labelLPicN.Text = string.Format("{0}", "---");
+            labelLPicP.Text = string.Format("{0}", "---");
+            labelLPicS.Text = string.Format("{0}", "---");
+            labelLWZComressinResult.Text = string.Format("{0}", "---");
+            labelRleComressionResult.Text = string.Format("{0}", "---");
+            labelRleSize.Text = string.Format("{0}", "---");
+            labelLwzSize.Text = string.Format("{0}", "---");
         }
 
         public void ShowRleEncoded(Picture picture)
@@ -96,7 +108,21 @@ namespace RleLwzCompression
 
         public void ClearSources()
         {
-            throw new NotImplementedException();
+            InitializeControls();
+            ClearImages();
+        }
+
+        private void ClearImages()
+        {
+            pictureBoxLoadedPicture.Image = null;
+            pictureBoxLoadedPicture.Refresh();
+            pictureBoxRleDecodePicture.Image = null;
+            pictureBoxRleDecodePicture.Refresh();
+            pictureBoxLwzDecodePicture.Image = null;
+            pictureBoxLwzDecodePicture.Refresh();
+
+            progressBarRleEncode.Value = 0;
+            progressBarLwzEncode.Value = 0;
         }
 
         public string LoadPicture()
