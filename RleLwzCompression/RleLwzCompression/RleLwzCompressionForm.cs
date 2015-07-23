@@ -45,7 +45,6 @@ namespace RleLwzCompression
             labelLPicN.Text = string.Format(" {0}", LPicture.Name);
             labelLPicP.Text = string.Format(" {0}", LPicture.Path);
             labelLPicS.Text = string.Format(" {0}", LPicture.Size);
-            labelPath.Text = string.Format(" {0}", Path.GetDirectoryName(LPicture.Path));
         }
 
         public void ShowRleEncoded(Picture picture)
