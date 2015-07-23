@@ -30,7 +30,7 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
                 encodedPicture.EncodedContents[ii] = pictureInbytes[i];
                 ii++;
             }
-            encodedPicture.Size = encodedPicture.EncodedContents.Length;
+            encodedPicture.Size = ii;
             return encodedPicture;
         }
 
