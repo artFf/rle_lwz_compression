@@ -16,8 +16,8 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
             var pictureInbytes = File.ReadAllBytes(picture.Path);
             Picture encodedPicture = new Picture
             {
-                EncodedContents = new byte[pictureInbytes.Length],
-                EncodedIntContents = new int[pictureInbytes.Length],
+                EncodedContents = new List<byte>(),
+                EncodedIntContents = new List<int>(),
                 Name = picture.Name,
                 Path = picture.Path
             };
@@ -49,8 +49,8 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
             if (!string.IsNullOrEmpty(w))
                 compressed.Add(dictionary[w]);
 
-            encodedPicture.EncodedIntContents = compressed.ToArray();
-            encodedPicture.Size = encodedPicture.EncodedIntContents.Length;
+            encodedPicture.EncodedIntContents = compressed.ToList();
+            encodedPicture.Size = encodedPicture.EncodedIntContents.Count;
             return encodedPicture;
         }
 
@@ -88,19 +88,12 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
         private byte[] ConvertStringToByteArray(string strByteImage)
         {
             string[] split = strByteImage.Split(' ');
-            return (from s in split where s.Trim() != "" select Byte.Parse(s)).ToArray();
+            return (from s in split where s.Trim() != string.Empty select Byte.Parse(s)).ToArray();
         }
 
         private string ConvertByteArrayToString(byte[] image)
         {
             return string.Join(" ", image.Select(i => i));
-            /*StringBuilder sb = new StringBuilder();
-            foreach (byte t in image)
-            {
-                sb.Append(t.ToString() + " ");
-                //sb.Append(" ");
-            }
-            return sb.ToString();*/
         }
     }
 }

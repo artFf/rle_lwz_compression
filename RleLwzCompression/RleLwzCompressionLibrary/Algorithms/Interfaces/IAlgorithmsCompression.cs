@@ -1,4 +1,5 @@
-﻿using RleLwzCompressionLibrary.Models;
+﻿using System;
+using RleLwzCompressionLibrary.Models;
 
 namespace RleLwzCompressionLibrary.Algorithms.Interfaces
 {

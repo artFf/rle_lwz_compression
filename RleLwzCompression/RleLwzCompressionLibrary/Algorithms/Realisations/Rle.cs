@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using RleLwzCompressionLibrary.Algorithms.Interfaces;
 using RleLwzCompressionLibrary.Models;
 
@@ -11,12 +13,10 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
             var pictureInbytes = File.ReadAllBytes(picture.Path);
             Picture encodedPicture = new Picture
             {
-                EncodedContents = new byte[pictureInbytes.Length*2],
+                EncodedContents = new List<byte>(),
                 Name = picture.Name,
                 Path = picture.Path
             };
-
-            int ii = 0;
             for (int i = 0; i < pictureInbytes.Length; i++)
             {
                 byte currentBytesCount = 1;
@@ -25,12 +25,10 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
                     currentBytesCount++;
                     i++;
                 }
-                encodedPicture.EncodedContents[ii] = currentBytesCount;
-                ii++;
-                encodedPicture.EncodedContents[ii] = pictureInbytes[i];
-                ii++;
+                encodedPicture.EncodedContents.Add(currentBytesCount);
+                encodedPicture.EncodedContents.Add(pictureInbytes[i]);
             }
-            encodedPicture.Size = ii;
+            encodedPicture.Size = encodedPicture.EncodedContents.Count;
             return encodedPicture;
         }
 
@@ -40,7 +38,7 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
             var decodedPicture = picture;
             decodedPicture.DecodedContents = new byte[size];
             int step = 0;
-            for (int i = 1; i < picture.EncodedContents.Length; i += 2)
+            for (int i = 1; i < picture.EncodedContents.Count; i += 2)
             {
                 byte currentBytesCount = picture.EncodedContents[i - 1];
                 while (currentBytesCount > 0)

@@ -44,17 +44,17 @@
     <Compile Include="Algorithms\Realisations\Lwz.cs" />
     <Compile Include="Algorithms\Realisations\Rle.cs" />
     <Compile Include="Enums\Attributes\EnumDisplayAttribute.cs" />
+    <Compile Include="Enums\ErrorEnum.cs" />
     <Compile Include="Enums\Extenstions\EnumExtenstionClass.cs" />
     <Compile Include="Enums\OpenFileDialogEnums.cs" />
+    <Compile Include="Exceptions\AlgorithmsException.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Presenters\CompressionPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleFactory\AlgorithmsFactory.cs" />
     <Compile Include="ViewInerfaces\IRleLwzCompressionForm.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

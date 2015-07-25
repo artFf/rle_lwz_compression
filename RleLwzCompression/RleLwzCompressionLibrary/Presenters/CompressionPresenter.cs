@@ -6,7 +6,6 @@ using RleLwzCompressionLibrary.Algorithms.Contexts;
 using RleLwzCompressionLibrary.Algorithms.Realisations;
 using RleLwzCompressionLibrary.Enums;
 using RleLwzCompressionLibrary.Models;
-using RleLwzCompressionLibrary.Reporters;
 using RleLwzCompressionLibrary.SimpleFactory;
 using RleLwzCompressionLibrary.ViewInerfaces;
 
