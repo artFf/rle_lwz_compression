@@ -123,6 +123,10 @@ namespace RleLwzCompression
 
             progressBarRleEncode.Value = 0;
             progressBarLwzEncode.Value = 0;
+
+            LPicture = null;
+            RlePicture = null;
+            LwzPicture = null;
         }
 
         public string LoadPicture()
@@ -137,6 +141,11 @@ namespace RleLwzCompression
             return dialog.ShowDialog() == DialogResult.OK ? dialog.FileName : string.Empty;
         }
 
+        public void ShowError(ErrorEnum error)
+        {
+            MessageBox.Show(error.GetStringValue());
+        }
+        
         #region Private methods
 
         private void CreateActions()

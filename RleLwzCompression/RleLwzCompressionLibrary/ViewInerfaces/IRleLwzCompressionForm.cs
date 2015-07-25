@@ -1,4 +1,5 @@
 ﻿using System;
+using RleLwzCompressionLibrary.Enums;
 using RleLwzCompressionLibrary.Models;
 
 namespace RleLwzCompressionLibrary.ViewInerfaces
@@ -23,5 +24,6 @@ namespace RleLwzCompressionLibrary.ViewInerfaces
         void CloseForm();
         void ClearSources();
         string LoadPicture();
+        void ShowError(ErrorEnum error);
     }
 }
