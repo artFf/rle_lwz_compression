@@ -7,9 +7,7 @@ namespace RleLwzCompressionLibrary.Models
         public string Name { get; set; }
         public string Path { get; set; }
         public long Size { get; set; }
-        public List<byte> EncodedContents { get; set; }
-        public byte[] DecodedContents { get; set; }
-        public List<int> EncodedIntContents { get; set; }
-        public int[] DecodedIntContents { get; set; }
+        public List<string> EncodedContents { get; set; }
+        public List<byte> DecodedContents { get; set; }
     }
 }

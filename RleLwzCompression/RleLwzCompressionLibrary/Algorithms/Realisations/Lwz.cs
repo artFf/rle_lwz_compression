@@ -16,8 +16,7 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
             var pictureInbytes = File.ReadAllBytes(picture.Path);
             Picture encodedPicture = new Picture
             {
-                EncodedContents = new List<byte>(),
-                EncodedIntContents = new List<int>(),
+                EncodedContents = new List<string>(),
                 Name = picture.Name,
                 Path = picture.Path
             };
@@ -29,7 +28,7 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
                 dictionary.Add(((char)i).ToString(), i);
 
             string w = string.Empty;
-            List<int> compressed = new List<int>();
+            List<string> compressed = new List<string>();
 
             foreach (char c in uncompressed)
             {
@@ -40,17 +39,17 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
                 }
                 else
                 {
-                    compressed.Add(dictionary[w]);
+                    compressed.Add(dictionary[w].ToString());
                     dictionary.Add(wc, dictionary.Count);
                     w = c.ToString();
                 }
             }
 
             if (!string.IsNullOrEmpty(w))
-                compressed.Add(dictionary[w]);
+                compressed.Add(dictionary[w].ToString());
 
-            encodedPicture.EncodedIntContents = compressed.ToList();
-            encodedPicture.Size = encodedPicture.EncodedIntContents.Count;
+            encodedPicture.EncodedContents = compressed.ToList();
+            encodedPicture.Size = encodedPicture.EncodedContents.Count;
             return encodedPicture;
         }
 
@@ -58,22 +57,23 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
         {
             //todo
             var decodedPicture = picture;
-            decodedPicture.DecodedContents = new byte[size];
+            decodedPicture.DecodedContents = new List<byte>();
 
-            List<int> compressed = picture.EncodedIntContents.ToList();
+            List<string> compressed = picture.EncodedContents.ToList();
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
             for (int i = 0; i < 256; i++)
                 dictionary.Add(i, ((char)i).ToString());
 
-            string w = dictionary[compressed[0]];
+            string w = dictionary[Convert.ToInt32(compressed[0])];
             compressed.RemoveAt(0);
             StringBuilder decompressed = new StringBuilder(w);
-            foreach (int k in compressed)
+            foreach (string k in compressed)
             {
+                int kInt = Convert.ToInt32(k);
                 string entry = string.Empty;
-                if (dictionary.ContainsKey(k))
-                    entry = dictionary[k];
-                else if (k == dictionary.Count)
+                if (dictionary.ContainsKey(kInt))
+                    entry = dictionary[kInt];
+                else if (kInt == dictionary.Count)
                     entry = w + w[0];
 
                 decompressed.Append(entry);
@@ -85,10 +85,10 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
             return decodedPicture;
         }
 
-        private byte[] ConvertStringToByteArray(string strByteImage)
+        private List<byte> ConvertStringToByteArray(string strByteImage)
         {
             string[] split = strByteImage.Split(' ');
-            return (from s in split where s.Trim() != string.Empty select Byte.Parse(s)).ToArray();
+            return (from s in split where s.Trim() != string.Empty select Byte.Parse(s)).ToList();
         }
 
         private string ConvertByteArrayToString(byte[] image)

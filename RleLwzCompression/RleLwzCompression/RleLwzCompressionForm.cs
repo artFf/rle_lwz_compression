@@ -77,13 +77,13 @@ namespace RleLwzCompression
         public void ShowRleDecoded(Picture picture)
         {
             RlePicture = picture;
-            pictureBoxRleDecodePicture.Image = new Bitmap(new MemoryStream(RlePicture.DecodedContents));
+            pictureBoxRleDecodePicture.Image = new Bitmap(new MemoryStream(RlePicture.DecodedContents.ToArray()));
         }
 
         public void ShowLwzDecoded(Picture picture)
         {
             LwzPicture = picture;
-            pictureBoxLwzDecodePicture.Image = new Bitmap(new MemoryStream(LwzPicture.DecodedContents));
+            pictureBoxLwzDecodePicture.Image = new Bitmap(new MemoryStream(LwzPicture.DecodedContents.ToArray()));
         }
 
         public void ShowLogView()
