@@ -148,7 +148,7 @@ namespace RleLwzCompressionLibrary.Presenters
             try
             {
                 var pathToPicture = _rleLwzCompression.LoadPicture();
-                _picture = _rleLwzCompression.GetLoadedPictureInfo(pathToPicture);
+                _picture = _rleLwzCompression.GetPictureInfo(pathToPicture);
                 _rleLwzCompression.ShowPicture(_picture);
             }
             catch (PresenterException e)

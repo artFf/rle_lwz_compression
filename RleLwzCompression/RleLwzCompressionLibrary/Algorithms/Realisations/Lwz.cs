@@ -65,7 +65,6 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
         {
             try
             {
-//todo
                 var decodedPicture = picture;
                 decodedPicture.DecodedContents = new List<byte>();
 
@@ -92,6 +91,7 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
                 }
                 string sstr = decompressed.ToString();
                 decodedPicture.DecodedContents = ConvertStringToByteArray(sstr);
+                decodedPicture.Size = decodedPicture.DecodedContents.Count;
                 return decodedPicture;
             }
             catch (Exception e)

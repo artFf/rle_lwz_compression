@@ -25,7 +25,7 @@ namespace RleLwzCompressionLibrary.ViewInerfaces
         void ShowError(string errorMassage);
         void ShowLoader(AlgorithmEnum algorithm, bool switchOn, OperationEnum operation);
         Picture GetEncodedPicture(AlgorithmEnum algorithmType);
-        Picture GetLoadedPictureInfo(string pathToPicture);
+        Picture GetPictureInfo(string pathToPicture);
         string LoadPicture();
     }
 }

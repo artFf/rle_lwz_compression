@@ -57,6 +57,7 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
                         currentBytesCount--;
                     }
                 }
+                decodedPicture.Size = decodedPicture.DecodedContents.Count;
                 return decodedPicture;
             }
             catch (Exception e)

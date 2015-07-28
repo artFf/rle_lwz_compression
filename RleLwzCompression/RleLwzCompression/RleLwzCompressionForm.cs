@@ -104,7 +104,7 @@ namespace RleLwzCompression
             return new Picture();
         }
         
-        public Picture GetLoadedPictureInfo(string pathToPicture)
+        public Picture GetPictureInfo(string pathToPicture)
         {
             try
             {
