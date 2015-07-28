@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using RleLwzCompressionLibrary.Enums;
 using RleLwzCompressionLibrary.Models;
 
@@ -19,11 +20,12 @@ namespace RleLwzCompressionLibrary.ViewInerfaces
         void ShowRleDecoded(Picture picture);
         void ShowLwzDecoded(Picture picture);
         void ShowLogView();
-        Picture GetRleEncodedPicture();
-        Picture GetLwzEncodedPicture();
         void CloseForm();
         void ClearSources();
+        void ShowError(string errorMassage);
+        void ShowLoader(AlgorithmEnum algorithm, bool switchOn, OperationEnum operation);
+        Picture GetEncodedPicture(AlgorithmEnum algorithmType);
+        Picture GetLoadedPictureInfo(string pathToPicture);
         string LoadPicture();
-        void ShowError(ErrorEnum error);
     }
 }

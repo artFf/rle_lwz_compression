@@ -12,6 +12,7 @@ using RleLwzCompressionLibrary.Models;
 using RleLwzCompressionLibrary.ViewInerfaces;
 using RleLwzCompressionLibrary.Enums;
 using RleLwzCompressionLibrary.Enums.Extenstions;
+using RleLwzCompressionLibrary.Exceptions;
 
 namespace RleLwzCompression
 {
@@ -57,6 +58,8 @@ namespace RleLwzCompression
             labelRleComressionResult.Text = string.Format("{0}", "---");
             labelRleSize.Text = string.Format("{0}", "---");
             labelLwzSize.Text = string.Format("{0}", "---");
+            labelEncodeRleProgress.Text = @"Encode RLE progress:";
+            labelEncodeLwzProgress.Text = @"Encode LWZ progress:";
         }
 
         public void ShowRleEncoded(Picture picture)
@@ -91,18 +94,38 @@ namespace RleLwzCompression
             throw new NotImplementedException();
         }
 
-        public Picture GetRleEncodedPicture()
+        public Picture GetEncodedPicture(AlgorithmEnum algorithmType)
         {
-            return RlePicture;
+            if (algorithmType == AlgorithmEnum.Rle)
+                return RlePicture;
+            if (algorithmType == AlgorithmEnum.Lwz)
+                return LwzPicture;
+            
+            return new Picture();
         }
-
-        public Picture GetLwzEncodedPicture()
+        
+        public Picture GetLoadedPictureInfo(string pathToPicture)
         {
-            return LwzPicture;
+            try
+            {
+                var picture = new Picture
+                {
+                    Path = pathToPicture,
+                    Name = Path.GetFileName(pathToPicture),
+                    Size = new FileInfo(pathToPicture).Length
+                };
+
+                return picture;
+            }
+            catch (Exception e)
+            {
+                throw new PresenterException(e.Message, e);
+            }
         }
 
         public void CloseForm()
         {
+            ClearSources();
             this.Close();
         }
 
@@ -114,16 +137,24 @@ namespace RleLwzCompression
 
         private void ClearImages()
         {
-            pictureBoxLoadedPicture.Image = null;
-            pictureBoxLoadedPicture.Refresh();
-            pictureBoxRleDecodePicture.Image = null;
-            pictureBoxRleDecodePicture.Refresh();
-            pictureBoxLwzDecodePicture.Image = null;
-            pictureBoxLwzDecodePicture.Refresh();
+            if (pictureBoxLoadedPicture.Image != null)
+            {
+                pictureBoxLoadedPicture.Image.Dispose();
+                pictureBoxLoadedPicture.Image = null;
+            }
 
-            progressBarRleEncode.Value = 0;
-            progressBarLwzEncode.Value = 0;
+            if (pictureBoxRleDecodePicture.Image != null)
+            {
+                pictureBoxRleDecodePicture.Image.Dispose();
+                pictureBoxRleDecodePicture.Image = null;
+            }
 
+            if (pictureBoxLwzDecodePicture.Image != null)
+            {
+                pictureBoxLwzDecodePicture.Image.Dispose();
+                pictureBoxLwzDecodePicture.Image = null;
+            }
+            
             LPicture = null;
             RlePicture = null;
             LwzPicture = null;
@@ -131,19 +162,55 @@ namespace RleLwzCompression
 
         public string LoadPicture()
         {
-            var dialog = new OpenFileDialog
+            try
             {
-                Filter = OpenFileDialogEnums.Filter.GetStringValue(),
-                InitialDirectory = Environment.CurrentDirectory,
-                Title = OpenFileDialogEnums.Title.GetStringValue()
-            };
+                var dialog = new OpenFileDialog
+                {
+                    Filter = OpenFileDialogEnum.Filter.GetStringValue(),
+                    InitialDirectory = Environment.CurrentDirectory,
+                    Title = OpenFileDialogEnum.Title.GetStringValue()
+                };
 
-            return dialog.ShowDialog() == DialogResult.OK ? dialog.FileName : string.Empty;
+                return dialog.ShowDialog() == DialogResult.OK ? dialog.FileName : string.Empty;
+            }
+            catch (Exception e)
+            {
+                throw new PresenterException(e.Message,e);
+            }
         }
 
-        public void ShowError(ErrorEnum error)
+        public void ShowError(string errorMassage)
         {
-            MessageBox.Show(error.GetStringValue());
+            MessageBox.Show(errorMassage);
+        }
+
+        public void ShowLoader(AlgorithmEnum algorithm, bool switchOn,OperationEnum operation)
+        {
+            if (operation == OperationEnum.Encode)
+            {
+                labelEncodeRleProgress.Text = @"Encode RLE progress:";
+                labelEncodeLwzProgress.Text = @"Encode LWZ progress:";
+            }
+            if (operation == OperationEnum.Decode)
+            {
+                labelEncodeRleProgress.Text = @"Decode RLE progress:";
+                labelEncodeLwzProgress.Text = @"Decode LWZ progress:";
+            }
+
+            if (switchOn)
+            {
+                if (algorithm == AlgorithmEnum.Rle)
+                    pictureBoxRleWorking.Visible = true;
+                if (algorithm == AlgorithmEnum.Lwz)
+                    pictureBoxLwzWorking.Visible = true;
+            }
+            else
+            {
+                if (algorithm == AlgorithmEnum.Rle)
+                    pictureBoxRleWorking.Visible = false;
+                if (algorithm == AlgorithmEnum.Lwz)
+                    pictureBoxLwzWorking.Visible = false;
+            }
         }
         
         #region Private methods

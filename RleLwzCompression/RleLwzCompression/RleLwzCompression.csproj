@@ -79,9 +79,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RleLwzCompressionLibrary\RleLwzCompressionLibrary.csproj">
+    <ProjectReference Include="..\RleLwzCompressionLibrary\CompressionLibrary.csproj">
       <Project>{3E4609C8-88B7-45FE-A2AE-3B8434767F01}</Project>
-      <Name>RleLwzCompressionLibrary</Name>
+      <Name>CompressionLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 13.0.21005.1
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RleLwzCompression", "RleLwzCompression\RleLwzCompression.csproj", "{BF987B7D-6F25-4546-A5E8-DE84725E456B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RleLwzCompressionLibrary", "RleLwzCompressionLibrary\RleLwzCompressionLibrary.csproj", "{3E4609C8-88B7-45FE-A2AE-3B8434767F01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompressionLibrary", "RleLwzCompressionLibrary\CompressionLibrary.csproj", "{3E4609C8-88B7-45FE-A2AE-3B8434767F01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RleLwzCompressionTestProject", "RleLwzCompressionTestProject\RleLwzCompressionTestProject.csproj", "{CCA79DEC-85FE-4A57-BDE1-3A0C387B0475}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3E4609C8-88B7-45FE-A2AE-3B8434767F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E4609C8-88B7-45FE-A2AE-3B8434767F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E4609C8-88B7-45FE-A2AE-3B8434767F01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA79DEC-85FE-4A57-BDE1-3A0C387B0475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA79DEC-85FE-4A57-BDE1-3A0C387B0475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA79DEC-85FE-4A57-BDE1-3A0C387B0475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA79DEC-85FE-4A57-BDE1-3A0C387B0475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
