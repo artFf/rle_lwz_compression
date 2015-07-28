@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using RleLwzCompressionLibrary.Algorithms.Interfaces;
+using RleLwzCompressionLibrary.Exceptions;
 using RleLwzCompressionLibrary.Models;
 
 namespace RleLwzCompressionLibrary.Algorithms.Realisations
@@ -13,76 +14,90 @@ namespace RleLwzCompressionLibrary.Algorithms.Realisations
         //http://rosettacode.org/wiki/LZW_compression#C.23
         public Picture Encode(Picture picture)
         {
-            var pictureInbytes = File.ReadAllBytes(picture.Path);
-            Picture encodedPicture = new Picture
+            try
             {
-                EncodedContents = new List<string>(),
-                Name = picture.Name,
-                Path = picture.Path
-            };
-
-            string uncompressed = ConvertByteArrayToString(pictureInbytes);
-            
-            Dictionary<string, int> dictionary = new Dictionary<string, int>();
-            for (int i = 0; i < 256; i++)
-                dictionary.Add(((char)i).ToString(), i);
-
-            string w = string.Empty;
-            List<string> compressed = new List<string>();
-
-            foreach (char c in uncompressed)
-            {
-                string wc = w + c;
-                if (dictionary.ContainsKey(wc))
+                var pictureInbytes = File.ReadAllBytes(picture.Path);
+                Picture encodedPicture = new Picture
                 {
-                    w = wc;
+                    EncodedContents = new List<string>(),
+                    Name = picture.Name,
+                    Path = picture.Path
+                };
+
+                string uncompressed = ConvertByteArrayToString(pictureInbytes);
+
+                Dictionary<string, int> dictionary = new Dictionary<string, int>();
+                for (int i = 0; i < 256; i++)
+                    dictionary.Add(((char) i).ToString(), i);
+
+                string w = string.Empty;
+                List<string> compressed = new List<string>();
+
+                foreach (char c in uncompressed)
+                {
+                    string wc = w + c;
+                    if (dictionary.ContainsKey(wc))
+                    {
+                        w = wc;
+                    }
+                    else
+                    {
+                        compressed.Add(dictionary[w].ToString());
+                        dictionary.Add(wc, dictionary.Count);
+                        w = c.ToString();
+                    }
                 }
-                else
-                {
+
+                if (!string.IsNullOrEmpty(w))
                     compressed.Add(dictionary[w].ToString());
-                    dictionary.Add(wc, dictionary.Count);
-                    w = c.ToString();
-                }
+
+                encodedPicture.EncodedContents = compressed.ToList();
+                encodedPicture.Size = encodedPicture.EncodedContents.Count;
+                return encodedPicture;
             }
-
-            if (!string.IsNullOrEmpty(w))
-                compressed.Add(dictionary[w].ToString());
-
-            encodedPicture.EncodedContents = compressed.ToList();
-            encodedPicture.Size = encodedPicture.EncodedContents.Count;
-            return encodedPicture;
+            catch (Exception e)
+            {
+                throw new AlgorithmsException(e.Message, e);
+            }
         }
 
-        public Picture Decode(Picture picture, int size)
+        public Picture Decode(Picture picture)
         {
-            //todo
-            var decodedPicture = picture;
-            decodedPicture.DecodedContents = new List<byte>();
-
-            List<string> compressed = picture.EncodedContents.ToList();
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            for (int i = 0; i < 256; i++)
-                dictionary.Add(i, ((char)i).ToString());
-
-            string w = dictionary[Convert.ToInt32(compressed[0])];
-            compressed.RemoveAt(0);
-            StringBuilder decompressed = new StringBuilder(w);
-            foreach (string k in compressed)
+            try
             {
-                int kInt = Convert.ToInt32(k);
-                string entry = string.Empty;
-                if (dictionary.ContainsKey(kInt))
-                    entry = dictionary[kInt];
-                else if (kInt == dictionary.Count)
-                    entry = w + w[0];
+//todo
+                var decodedPicture = picture;
+                decodedPicture.DecodedContents = new List<byte>();
 
-                decompressed.Append(entry);
-                dictionary.Add(dictionary.Count, w + entry[0]);
-                w = entry;
+                List<string> compressed = picture.EncodedContents.ToList();
+                Dictionary<int, string> dictionary = new Dictionary<int, string>();
+                for (int i = 0; i < 256; i++)
+                    dictionary.Add(i, ((char)i).ToString());
+
+                string w = dictionary[Convert.ToInt32(compressed[0])];
+                compressed.RemoveAt(0);
+                StringBuilder decompressed = new StringBuilder(w);
+                foreach (string k in compressed)
+                {
+                    int kInt = Convert.ToInt32(k);
+                    string entry = string.Empty;
+                    if (dictionary.ContainsKey(kInt))
+                        entry = dictionary[kInt];
+                    else if (kInt == dictionary.Count)
+                        entry = w + w[0];
+
+                    decompressed.Append(entry);
+                    dictionary.Add(dictionary.Count, w + entry[0]);
+                    w = entry;
+                }
+                string sstr = decompressed.ToString();
+                decodedPicture.DecodedContents = ConvertStringToByteArray(sstr);
+                return decodedPicture;
             }
-            string sstr = decompressed.ToString();
-            decodedPicture.DecodedContents = ConvertStringToByteArray(sstr);
-            return decodedPicture;
+            catch (Exception e)
+            {
+                throw new AlgorithmsException(e.Message, e);
+            }
         }
 
         private List<byte> ConvertStringToByteArray(string strByteImage)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RleLwzCompressionLibrary.Algorithms.Interfaces;
+using RleLwzCompressionLibrary.Exceptions;
 using RleLwzCompressionLibrary.Models;
 
 namespace RleLwzCompressionLibrary.Algorithms.Contexts
@@ -24,12 +25,26 @@ namespace RleLwzCompressionLibrary.Algorithms.Contexts
 
         public Picture ExuceteEncode(Picture picture)
         {
-            return AlgorithmsCompression.Encode(picture);
+            try
+            {
+                return AlgorithmsCompression.Encode(picture);
+            }
+            catch (AlgorithmsException e)
+            {
+                throw;
+            }
         }
 
-        public Picture ExuceteDecode(Picture picture, int size)
+        public Picture ExuceteDecode(Picture picture)
         {
-            return AlgorithmsCompression.Decode(picture, size);
+            try
+            {
+                return AlgorithmsCompression.Decode(picture);
+            }
+            catch (AlgorithmsException e)
+            {
+                throw;
+            }
         }
     }
 }

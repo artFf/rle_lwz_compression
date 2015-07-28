@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using RleLwzCompressionLibrary.Algorithms.Contexts;
 using RleLwzCompressionLibrary.Algorithms.Realisations;
 using RleLwzCompressionLibrary.Enums;
+using RleLwzCompressionLibrary.Enums.Extenstions;
+using RleLwzCompressionLibrary.Exceptions;
 using RleLwzCompressionLibrary.Models;
 using RleLwzCompressionLibrary.SimpleFactory;
 using RleLwzCompressionLibrary.ViewInerfaces;
@@ -17,6 +19,8 @@ namespace RleLwzCompressionLibrary.Presenters
         private Picture _picture;
         private Picture _rleEncodedPicture;
         private Picture _lwzEncodedPicture;
+        private static readonly CancellationTokenSource TokenSource = new CancellationTokenSource();
+        private readonly CancellationToken _token = TokenSource.Token;
 
         public CompressionPresenter(IRleLwzCompressionForm rleLwzCompression)
         {
@@ -48,81 +52,137 @@ namespace RleLwzCompressionLibrary.Presenters
             _rleLwzCompression.CloseForm();
         }
 
-        void _rleLwzCompression_ButtonDecodePicture()
+        async void _rleLwzCompression_ButtonDecodePicture()
         {
-            if (_picture == null || _rleEncodedPicture == null || _lwzEncodedPicture == null)
+            try
             {
-                _rleLwzCompression.ShowError(ErrorEnum.Decode);
-                return;
+                if (_picture == null || _rleEncodedPicture == null || _lwzEncodedPicture == null)
+                {
+                    _rleLwzCompression.ShowError(ErrorEnum.Decode.GetStringValue());
+                    return;
+                }
+
+                if (_rleEncodedPicture != null && _lwzEncodedPicture != null &&
+                    _rleEncodedPicture.DecodedContents != null && _lwzEncodedPicture.DecodedContents != null)
+                {
+                    _rleLwzCompression.ShowError("Pictures are decoded.");
+                    return;
+                }
+
+
+                var rleDecodedPicture = CreateTask(new Context(AlgorithmsFactory.CreateInstance<Rle>()),
+                    OperationEnum.Decode, AlgorithmEnum.Rle);
+                var lwzDecodedPicture = CreateTask(new Context(AlgorithmsFactory.CreateInstance<Lwz>()),
+                    OperationEnum.Decode, AlgorithmEnum.Lwz);
+
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Rle, true, OperationEnum.Decode);
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Lwz, true, OperationEnum.Decode);
+                await Task.WhenAll(rleDecodedPicture, lwzDecodedPicture);
+
+                var rleDecodedPictureResult = await rleDecodedPicture;
+                var lwzDecodedPictureResult = await lwzDecodedPicture;
+
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Rle, false, OperationEnum.Decode);
+                _rleLwzCompression.ShowRleDecoded(rleDecodedPictureResult);
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Lwz, false, OperationEnum.Decode);
+                _rleLwzCompression.ShowLwzDecoded(lwzDecodedPictureResult);
             }
-
-            var compressionsAlgorithms = new Context(AlgorithmsFactory.CreateInstance<Rle>());
-            var rleDecodedPicture = compressionsAlgorithms.ExuceteDecode(_rleLwzCompression.GetRleEncodedPicture(), (int)_picture.Size);
-            _rleLwzCompression.ShowRleDecoded(rleDecodedPicture);
-
-            compressionsAlgorithms.SetAlgorithm(AlgorithmsFactory.CreateInstance<Lwz>());
-            var lwzDecodedPicture = compressionsAlgorithms.ExuceteDecode(_rleLwzCompression.GetLwzEncodedPicture(),(int)_picture.Size);
-            _rleLwzCompression.ShowLwzDecoded(lwzDecodedPicture);
+            catch (AlgorithmsException e)
+            {
+                _rleLwzCompression.ShowError(e.Message);
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Rle, false, OperationEnum.Decode);
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Lwz, false, OperationEnum.Decode);
+            }
         }
 
         async void _rleLwzCompression_ButtonEncodePicture()
         {
-            if (_picture == null)
+            try
             {
-                _rleLwzCompression.ShowError(ErrorEnum.Encode);
-                return;
+                if (_picture == null)
+                {
+                    _rleLwzCompression.ShowError(ErrorEnum.Encode.GetStringValue());
+                    return;
+                }
+
+                if (_rleEncodedPicture != null || _lwzEncodedPicture != null)
+                {
+                    _rleLwzCompression.ShowError("Pictures are encoded.");
+                    return;
+                }
+
+
+                var rleEncodedPicture = CreateTask(new Context(AlgorithmsFactory.CreateInstance<Rle>()),
+                    OperationEnum.Encode, AlgorithmEnum.Rle);
+                var lwzEncodedPicture = CreateTask(new Context(AlgorithmsFactory.CreateInstance<Lwz>()),
+                    OperationEnum.Encode, AlgorithmEnum.Lwz);
+
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Rle, true, OperationEnum.Encode);
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Lwz, true, OperationEnum.Encode);
+                await Task.WhenAll(rleEncodedPicture, lwzEncodedPicture);
+
+                _rleEncodedPicture = await rleEncodedPicture;
+                _lwzEncodedPicture = await lwzEncodedPicture;
+
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Rle, false, OperationEnum.Encode);
+                _rleLwzCompression.ShowRleEncoded(rleEncodedPicture.Result);
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Lwz, false, OperationEnum.Encode);
+                _rleLwzCompression.ShowLwzEncoded(lwzEncodedPicture.Result);
             }
-
-            
-            //_rleEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
-            
-            CancellationTokenSource  tokenSource = new CancellationTokenSource();
-            CancellationToken token = tokenSource.Token;
-            
-            var rleEncodedPicture1 = Task<Picture>.Factory.StartNew(() =>
-            //var rleEncodedPicture1 = Task<Picture>.Run(() =>
+            catch (AlgorithmsException e)
             {
-                var compressionsAlgorithms = new Context(AlgorithmsFactory.CreateInstance<Rle>());
-                _rleEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
-                return _rleEncodedPicture;
-            }, token);
-
-
-            
-            var lwzEncodedPicture1 = Task<Picture>.Factory.StartNew(() =>
-            //var rleEncodedPicture1 = Task<Picture>.Run(() =>
-            {
-                var compressionsAlgorithms = new Context(AlgorithmsFactory.CreateInstance<Lwz>());
-                _lwzEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
-                return _lwzEncodedPicture;
-            }, token);
-
-            await Task.WhenAll(rleEncodedPicture1, lwzEncodedPicture1);
-
-            _rleLwzCompression.ShowRleEncoded(rleEncodedPicture1.Result);
-            _rleLwzCompression.ShowLwzEncoded(lwzEncodedPicture1.Result);
-
-            /*compressionsAlgorithms.SetAlgorithm(AlgorithmsFactory.CreateInstance<Lwz>());
-            _lwzEncodedPicture = compressionsAlgorithms.ExuceteEncode(_picture);
-            _rleLwzCompression.ShowLwzEncoded(_lwzEncodedPicture);*/
+                _rleLwzCompression.ShowError(e.Message);
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Rle, false, OperationEnum.Encode);
+                _rleLwzCompression.ShowLoader(AlgorithmEnum.Lwz, false, OperationEnum.Encode);
+            }
         }
 
         void _rleLwzCompression_ButtonLoadPicture()
         {
             if (_picture != null)
             {
-                _rleLwzCompression.ShowError(ErrorEnum.Load);
+                _rleLwzCompression.ShowError(ErrorEnum.Load.GetStringValue());
                 return;
             }
 
-            var pathToPicture = _rleLwzCompression.LoadPicture();
-            _picture = new Picture
+            try
             {
-                Path = pathToPicture,
-                Name = Path.GetFileName(pathToPicture),
-                Size = new FileInfo(pathToPicture).Length
-            };
-            _rleLwzCompression.ShowPicture(_picture);
+                var pathToPicture = _rleLwzCompression.LoadPicture();
+                _picture = _rleLwzCompression.GetLoadedPictureInfo(pathToPicture);
+                _rleLwzCompression.ShowPicture(_picture);
+            }
+            catch (PresenterException e)
+            {
+                _rleLwzCompression.ShowError(e.Message);
+            }
+        }
+
+        private Task<Picture> CreateTask(Context context, OperationEnum operationEnum,AlgorithmEnum algorithmEnum)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    Picture picture = new Picture();
+                    if (operationEnum == OperationEnum.Encode)
+                    {
+                        picture = context.ExuceteEncode(_picture);
+                    }
+
+                    if (operationEnum == OperationEnum.Decode)
+                    {
+                        if (algorithmEnum == AlgorithmEnum.Rle)
+                            picture = context.ExuceteDecode(_rleLwzCompression.GetEncodedPicture(AlgorithmEnum.Rle));
+                        if (algorithmEnum == AlgorithmEnum.Lwz)
+                            picture = context.ExuceteDecode(_rleLwzCompression.GetEncodedPicture(AlgorithmEnum.Lwz));
+                    }
+                    return picture;
+                }, _token);
+            }
+            catch (AlgorithmsException e)
+            {
+                throw;
+            }
         }
     }
 }
