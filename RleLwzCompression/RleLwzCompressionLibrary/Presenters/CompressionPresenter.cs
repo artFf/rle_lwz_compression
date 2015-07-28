@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using RleLwzCompressionLibrary.Algorithms.Contexts;
 using RleLwzCompressionLibrary.Algorithms.Realisations;
@@ -13,15 +11,22 @@ using RleLwzCompressionLibrary.ViewInerfaces;
 
 namespace RleLwzCompressionLibrary.Presenters
 {
+    /// <summary>
+    /// Class used for communication with view and model
+    /// </summary>
     public class CompressionPresenter
     {
+        #region Fields
+
         private readonly IRleLwzCompressionForm _rleLwzCompression;
+        private readonly CancellationToken _token = TokenSource.Token;
+        private static readonly CancellationTokenSource TokenSource = new CancellationTokenSource();
         private Picture _picture;
         private Picture _rleEncodedPicture;
         private Picture _lwzEncodedPicture;
-        private static readonly CancellationTokenSource TokenSource = new CancellationTokenSource();
-        private readonly CancellationToken _token = TokenSource.Token;
 
+        #endregion
+        
         public CompressionPresenter(IRleLwzCompressionForm rleLwzCompression)
         {
             _rleLwzCompression = rleLwzCompression;
@@ -34,12 +39,14 @@ namespace RleLwzCompressionLibrary.Presenters
             _rleLwzCompression.ButtonClearSources += _rleLwzCompression_ButtonClearSources;
         }
 
-        void _rleLwzCompression_ButtonShowLogView()
+        #region Actions
+
+        private void _rleLwzCompression_ButtonShowLogView()
         {
             _rleLwzCompression.ShowLogView();
         }
 
-        void _rleLwzCompression_ButtonClearSources()
+        private void _rleLwzCompression_ButtonClearSources()
         {
             _picture = null;
             _rleEncodedPicture = null;
@@ -47,12 +54,12 @@ namespace RleLwzCompressionLibrary.Presenters
             _rleLwzCompression.ClearSources();
         }
 
-        void _rleLwzCompression_ButtonCloseRleLwzCompressionForm()
+        private void _rleLwzCompression_ButtonCloseRleLwzCompressionForm()
         {
             _rleLwzCompression.CloseForm();
         }
 
-        async void _rleLwzCompression_ButtonDecodePicture()
+        private async void _rleLwzCompression_ButtonDecodePicture()
         {
             try
             {
@@ -95,7 +102,7 @@ namespace RleLwzCompressionLibrary.Presenters
             }
         }
 
-        async void _rleLwzCompression_ButtonEncodePicture()
+        private async void _rleLwzCompression_ButtonEncodePicture()
         {
             try
             {
@@ -137,7 +144,7 @@ namespace RleLwzCompressionLibrary.Presenters
             }
         }
 
-        void _rleLwzCompression_ButtonLoadPicture()
+        private void _rleLwzCompression_ButtonLoadPicture()
         {
             if (_picture != null)
             {
@@ -157,7 +164,18 @@ namespace RleLwzCompressionLibrary.Presenters
             }
         }
 
-        private Task<Picture> CreateTask(Context context, OperationEnum operationEnum,AlgorithmEnum algorithmEnum)
+        #endregion
+
+        #region Private methods
+
+        /// <summary>
+        /// Create task for current algorithm and operation
+        /// </summary>
+        /// <param name="context">Context</param>
+        /// <param name="operationEnum">Algorithm type</param>
+        /// <param name="algorithmEnum">Operation type</param>
+        /// <returns></returns>
+        private Task<Picture> CreateTask(Context context, OperationEnum operationEnum, AlgorithmEnum algorithmEnum)
         {
             try
             {
@@ -184,5 +202,8 @@ namespace RleLwzCompressionLibrary.Presenters
                 throw;
             }
         }
+
+        #endregion
+
     }
 }

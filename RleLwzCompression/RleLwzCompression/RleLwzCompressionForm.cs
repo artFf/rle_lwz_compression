@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using RleLwzCompressionLibrary.Models;
-using RleLwzCompressionLibrary.ViewInerfaces;
 using RleLwzCompressionLibrary.Enums;
 using RleLwzCompressionLibrary.Enums.Extenstions;
 using RleLwzCompressionLibrary.Exceptions;
+using RleLwzCompressionLibrary.Models;
+using RleLwzCompressionLibrary.ViewInerfaces;
 
 namespace RleLwzCompression
 {
+    /// <summary>
+    /// Main form
+    /// </summary>
     public partial class RleLwzCompressionForm : Form, IRleLwzCompressionForm
     {
         #region Actions
@@ -29,9 +26,13 @@ namespace RleLwzCompression
 
         #endregion
 
+        #region Fields
+
         private Picture LPicture { get; set; }
         private Picture RlePicture { get; set; }
         private Picture LwzPicture { get; set; }
+
+        #endregion
 
         public RleLwzCompressionForm()
         {
@@ -39,6 +40,8 @@ namespace RleLwzCompression
             CreateActions();
             InitializeControls();
         }
+
+        #region Public methods
 
         public void ShowPicture(Picture picture)
         {
@@ -49,31 +52,17 @@ namespace RleLwzCompression
             labelLPicS.Text = string.Format(" {0}", LPicture.Size);
         }
 
-        private void InitializeControls()
-        {
-            labelLPicN.Text = string.Format("{0}", "---");
-            labelLPicP.Text = string.Format("{0}", "---");
-            labelLPicS.Text = string.Format("{0}", "---");
-            labelLWZComressinResult.Text = string.Format("{0}", "---");
-            labelRleComressionResult.Text = string.Format("{0}", "---");
-            labelRleSize.Text = string.Format("{0}", "---");
-            labelLwzSize.Text = string.Format("{0}", "---");
-            labelEncodeRleProgress.Text = @"Encode RLE progress:";
-            labelEncodeLwzProgress.Text = @"Encode LWZ progress:";
-        }
-
         public void ShowRleEncoded(Picture picture)
         {
             RlePicture = picture;
-            //todo check need to convert to double
-            labelRleComressionResult.Text = string.Format(" {0}", (float)RlePicture.Size / (float)LPicture.Size * 100);
+            labelRleComressionResult.Text = string.Format(" {0}", RlePicture.Size/(float) LPicture.Size*100);
             labelRleSize.Text = string.Format(" {0}", RlePicture.Size);
         }
 
         public void ShowLwzEncoded(Picture picture)
         {
             LwzPicture = picture;
-            labelLWZComressinResult.Text = string.Format(" {0}", (float)LwzPicture.Size / (float)LPicture.Size * 100);
+            labelLWZComressinResult.Text = string.Format(" {0}", (float) LwzPicture.Size/(float) LPicture.Size*100);
             labelLwzSize.Text = string.Format(" {0}", LwzPicture.Size);
         }
 
@@ -91,7 +80,7 @@ namespace RleLwzCompression
 
         public void ShowLogView()
         {
-            throw new NotImplementedException();
+            
         }
 
         public Picture GetEncodedPicture(AlgorithmEnum algorithmType)
@@ -100,10 +89,10 @@ namespace RleLwzCompression
                 return RlePicture;
             if (algorithmType == AlgorithmEnum.Lwz)
                 return LwzPicture;
-            
+
             return new Picture();
         }
-        
+
         public Picture GetPictureInfo(string pathToPicture)
         {
             try
@@ -135,31 +124,6 @@ namespace RleLwzCompression
             ClearImages();
         }
 
-        private void ClearImages()
-        {
-            if (pictureBoxLoadedPicture.Image != null)
-            {
-                pictureBoxLoadedPicture.Image.Dispose();
-                pictureBoxLoadedPicture.Image = null;
-            }
-
-            if (pictureBoxRleDecodePicture.Image != null)
-            {
-                pictureBoxRleDecodePicture.Image.Dispose();
-                pictureBoxRleDecodePicture.Image = null;
-            }
-
-            if (pictureBoxLwzDecodePicture.Image != null)
-            {
-                pictureBoxLwzDecodePicture.Image.Dispose();
-                pictureBoxLwzDecodePicture.Image = null;
-            }
-            
-            LPicture = null;
-            RlePicture = null;
-            LwzPicture = null;
-        }
-
         public string LoadPicture()
         {
             try
@@ -175,7 +139,7 @@ namespace RleLwzCompression
             }
             catch (Exception e)
             {
-                throw new PresenterException(e.Message,e);
+                throw new PresenterException(e.Message, e);
             }
         }
 
@@ -184,7 +148,7 @@ namespace RleLwzCompression
             MessageBox.Show(errorMassage);
         }
 
-        public void ShowLoader(AlgorithmEnum algorithm, bool switchOn,OperationEnum operation)
+        public void ShowLoader(AlgorithmEnum algorithm, bool switchOn, OperationEnum operation)
         {
             if (operation == OperationEnum.Encode)
             {
@@ -212,9 +176,14 @@ namespace RleLwzCompression
                     pictureBoxLwzWorking.Visible = false;
             }
         }
-        
+
+        #endregion
+
         #region Private methods
 
+        /// <summary>
+        /// Subscribe to events
+        /// </summary>
         private void CreateActions()
         {
             loadPictureToolStripMenuItem.Click += loadPictureToolStripMenuItem_Click;
@@ -222,6 +191,50 @@ namespace RleLwzCompression
             buttonEncode.Click += buttonEncode_Click;
             buttonDecode.Click += buttonDecode_Click;
             buttonClear.Click += buttonClear_Click;
+        }
+
+        /// <summary>
+        /// Initialize controls
+        /// </summary>
+        private void InitializeControls()
+        {
+            labelLPicN.Text = string.Format("{0}", "---");
+            labelLPicP.Text = string.Format("{0}", "---");
+            labelLPicS.Text = string.Format("{0}", "---");
+            labelLWZComressinResult.Text = string.Format("{0}", "---");
+            labelRleComressionResult.Text = string.Format("{0}", "---");
+            labelRleSize.Text = string.Format("{0}", "---");
+            labelLwzSize.Text = string.Format("{0}", "---");
+            labelEncodeRleProgress.Text = @"Encode RLE progress:";
+            labelEncodeLwzProgress.Text = @"Encode LWZ progress:";
+        }
+
+        /// <summary>
+        /// Clear images into PictureBoxs
+        /// </summary>
+        private void ClearImages()
+        {
+            if (pictureBoxLoadedPicture.Image != null)
+            {
+                pictureBoxLoadedPicture.Image.Dispose();
+                pictureBoxLoadedPicture.Image = null;
+            }
+
+            if (pictureBoxRleDecodePicture.Image != null)
+            {
+                pictureBoxRleDecodePicture.Image.Dispose();
+                pictureBoxRleDecodePicture.Image = null;
+            }
+
+            if (pictureBoxLwzDecodePicture.Image != null)
+            {
+                pictureBoxLwzDecodePicture.Image.Dispose();
+                pictureBoxLwzDecodePicture.Image = null;
+            }
+
+            LPicture = null;
+            RlePicture = null;
+            LwzPicture = null;
         }
 
         private void buttonClear_Click(object sender, EventArgs e)

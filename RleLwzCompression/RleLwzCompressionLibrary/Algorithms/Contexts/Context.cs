@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RleLwzCompressionLibrary.Algorithms.Interfaces;
+﻿using RleLwzCompressionLibrary.Algorithms.Interfaces;
 using RleLwzCompressionLibrary.Exceptions;
 using RleLwzCompressionLibrary.Models;
 
 namespace RleLwzCompressionLibrary.Algorithms.Contexts
 {
+    /// <summary>
+    /// Context is using a strategy for solving their problems. 
+    /// </summary>
     public class Context
     {
         private IAlgorithmsCompression AlgorithmsCompression { get; set; }

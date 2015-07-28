@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using RleLwzCompressionLibrary.Algorithms.Interfaces;
-using RleLwzCompressionLibrary.Enums;
-using RleLwzCompressionLibrary.Enums.Extenstions;
 using RleLwzCompressionLibrary.Presenters;
-using RleLwzCompressionLibrary.ViewInerfaces;
 
 namespace RleLwzCompression
 {
@@ -21,7 +14,7 @@ namespace RleLwzCompression
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            // Create presenter and initialize form
             var rleLwzCompressionForm = new RleLwzCompressionForm();
             CompressionPresenter compressionPresenter = new CompressionPresenter(rleLwzCompressionForm);
 

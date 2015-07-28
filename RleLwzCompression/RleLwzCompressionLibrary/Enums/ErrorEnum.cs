@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RleLwzCompressionLibrary.Enums.Attributes;
+﻿using RleLwzCompressionLibrary.Enums.Attributes;
 
 namespace RleLwzCompressionLibrary.Enums
 {
+    /// <summary>
+    /// error types
+    /// </summary>
     public enum ErrorEnum
     {
         [EnumDisplay("Please load picture to encode.")]
